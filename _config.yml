@@ -23,7 +23,7 @@ email: reece.watson@rwmvaleting.co.uk
 description: >- # this means to ignore newlines until "baseurl:"
   Mobile car valeting services for the Cannock and surrounding areas.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "rwmvaleting.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
