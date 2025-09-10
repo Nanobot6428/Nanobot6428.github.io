@@ -45,6 +45,8 @@ permalink: /services/
 
 ## Prices Starting 1st October 2025:
 
+#### Loyalty Discount - Clean again within 2 months to get a £5 discount
+
 #### Car Categories:
 **Regular:** Most cars, hatchbacks, SUVs, small estates, saloons  
 **Large:** Any car with a boot over 600 litres and vans smaller than a Ford Transit Custom  
