@@ -43,7 +43,7 @@ permalink: /services/
 |**Deep Valet** | Includes **Deep Exterior** and **Deep Interior**  |
 
 
-## Prices Starting October 1st 2025:
+## Prices Starting 1st October 2025:
 
 #### Car Categories:
 **Regular:** Most cars, hatchbacks, SUVs, small estates, saloons  
