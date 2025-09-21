@@ -82,3 +82,6 @@ Note: Only the passenger area in a van is cleaned, not cargo area.
 
 Extra Charges:
 For every mile more than 5 miles from Base Location (WS11 7YQ): £1 per mile rounded down to nearest mile
+
+
+{% include service-table.markdown %}

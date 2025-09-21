@@ -1,0 +1,61 @@
+hourly_rate: 15   # £ per hour
+fixed_charge: 2.25
+
+sizes:
+  - name: Small
+    key: small
+  - name: Medium
+    key: medium
+  - name: Large
+    key: large
+  - name: Very Large
+    key: very_large
+
+
+times:
+  exterior:
+    none: 0
+    basic: 1
+    standard: 1.5
+    deep: 3
+  interior:
+    none: 0
+    basic: 1
+    standard: 1.5
+    deep: 4
+
+
+ratios:
+  exterior:
+    small: 1
+    medium: 1.119097694
+    large: 1.235062582
+    very_large: 1.363512657
+  interior:
+    small: 1
+    medium: 1.09373547
+    large: 1.189429537
+    very_large: 1.37503999
+
+costs:
+  exterior:
+    none: 0
+    basic: 2
+    standard: 4
+    deep: 10
+  interior:
+    none: 0
+    basic: 0.5
+    standard: 1.5
+    deep: 10
+
+
+descriptions:
+  exterior:
+    basic: "Pre Wash, Contact Wash , Wheels cleaned, Microfibre drying"
+    standard: "Includes **Basic Exterior** + Dedicated wheel cleaner, Hydrophobic coating, Exterior window cleaner"
+    deep: "Includes **Standard Exterior** + Iron Fallout removal, Tar removal, Plastics dressed"
+  interior:
+    basic: "Hoover, Dry dust of plastics, Air vents dusted, Instrument Display Cleaned, Door sills cleaned"
+    standard: "Includes **Basic Interior** + Interior windows cleaned, Door shuts cleaned, Agitation of carpets, Small stains cleaned"
+    deep: "Includes **Standard Interior** + Leather upholstery conditioned, Interior Shampoo, Interior plastics dressed"
