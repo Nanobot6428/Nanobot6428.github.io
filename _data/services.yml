@@ -9,7 +9,7 @@ sizes:
   - name: Large
     key: large
   - name: Very Large
-    key: very_large
+    key: very-large
 
 
 times:
@@ -52,10 +52,10 @@ costs:
 
 descriptions:
   exterior:
-    basic: "Pre Wash, Contact Wash , Wheels cleaned, Microfibre drying"
-    standard: "Includes **Basic Exterior** + Dedicated wheel cleaner, Hydrophobic coating, Exterior window cleaner"
-    deep: "Includes **Standard Exterior** + Iron Fallout removal, Tar removal, Plastics dressed"
+    basic: "Pre Wash, Contact Wash, Wheels cleaned, Microfibre drying"
+    standard: "Includes <b>Basic Exterior</b> + Dedicated wheel cleaner, Hydrophobic coating, Exterior window cleaner"
+    deep: "Includes <b>Standard Exterior</b> + Iron Fallout removal, Tar removal, Plastics dressed"
   interior:
     basic: "Hoover, Dry dust of plastics, Air vents dusted, Instrument Display Cleaned, Door sills cleaned"
-    standard: "Includes **Basic Interior** + Interior windows cleaned, Door shuts cleaned, Agitation of carpets, Small stains cleaned"
-    deep: "Includes **Standard Interior** + Leather upholstery conditioned, Interior Shampoo, Interior plastics dressed"
+    standard: "Includes <b>Basic Interior</b> + Interior windows cleaned, Door shuts cleaned, Agitation of carpets, Small stains cleaned"
+    deep: "Includes <b>Standard Interior</b> + Leather upholstery conditioned, Interior Shampoo, Interior plastics dressed"

@@ -6,7 +6,7 @@
       <th>Size</th>
       <th>Time (hrs)</th>
       <th>Full Price (£)</th>
-      <th>Discounted (£)</th>
+      <th>Loyalty Price (£)</th>
       <th>Book</th>
     </tr>
   </thead>
@@ -60,7 +60,7 @@
               </td>
             {% endif %}
             <td>{{ size.name }}</td>
-            <td>{{ total_time | round }}</td>
+            <td>{{ total_time | round: 1 }}</td>
             <td>£{{ full_price | round }}</td>
             <td>£{{ discounted | round }}</td>
             <td>
@@ -126,7 +126,7 @@
                   </td>
                 {% endif %}
                 <td>{{ size.name }}</td>
-                <td>{{ total_time | round }}</td>
+                <td>{{ total_time | round: 1 }}</td>
                 <td>£{{ full_price | round }}</td>
                 <td>£{{ discounted | round }}</td>
                 <td>
@@ -191,7 +191,7 @@
                   </td>
                 {% endif %}
                 <td>{{ size.name }}</td>
-                <td>{{ total_time | round }}</td>
+                <td>{{ total_time | round: 1 }}</td>
                 <td>£{{ full_price | round }}</td>
                 <td>£{{ discounted | round }}</td>
                 <td>
@@ -251,7 +251,7 @@
               </td>
             {% endif %}
             <td>{{ size.name }}</td>
-            <td>{{ total_time | round }}</td>
+            <td>{{ total_time | round: 1 }}</td>
             <td>£{{ full_price | round }}</td>
             <td>£{{ discounted | round }}</td>
             <td>
