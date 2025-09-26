@@ -30,12 +30,12 @@ ratios:
     small: 1
     medium: 1.119097694
     large: 1.235062582
-    very_large: 1.363512657
+    very-large: 1.363512657
   interior:
     small: 1
     medium: 1.09373547
     large: 1.189429537
-    very_large: 1.37503999
+    very-large: 1.37503999
 
 costs:
   exterior:
