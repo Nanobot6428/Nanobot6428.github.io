@@ -6,7 +6,7 @@ permalink: /services/
 
 ## Prices Starting 1st October 2025:
 
-#### Loyalty Discount - Clean again within 2 months to get up to a 15% discount 
+#### Loyalty Discount - Clean again within 3 months to get up to a 15% discount 
  - Interval and discount applies to cars individually
 
 #### Car Categories:
