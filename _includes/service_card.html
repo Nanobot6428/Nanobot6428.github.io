@@ -35,7 +35,7 @@
             border-bottom:1px solid #eee;padding:0.5rem 0;width:100%;box-sizing:border-box;">
 
   <!-- Service -->
-  <div style="flex:1;min-width:200px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+  <div style="flex:1;min-width:200px;font-weight:bold;white-space:normal;word-break:break-word">
     {{ include.size.name }}
     {% if include.category == "exterior" %} {{ include.ext_key | capitalize }} Exterior
     {% elsif include.category == "valet" %} {{ include.ext_key | capitalize }} Valet
