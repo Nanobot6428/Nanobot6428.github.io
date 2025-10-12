@@ -24,18 +24,85 @@
 {% assign full_price = ext_total | plus: int_total | plus: fixed_charge %}
 {% assign discounted = full_price | times: 0.85 %}
 
+<style>
+/* Service card layout */
+.service-card {
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:center;
+  gap:8px;
+  border-bottom:1px solid #eee;
+  padding:0.5rem 0;
+  width:100%;
+  box-sizing:border-box;
+}
+
+.service-card > .service-col   { flex:1 1 200px; font-weight:bold; word-break:break-word; }
+.service-card > .time-col      { flex:0 0 80px; text-align:center; white-space:nowrap; }
+.service-card > .price-col     { flex:0 0 80px; text-align:center; white-space:nowrap; }
+.service-card > .loyalty-col   { flex:0 0 100px; text-align:center; color:#28a745; font-weight:bold; white-space:nowrap; }
+.service-card > .book-col      { flex:0 0 100px; text-align:center; }
+
+/* Responsive: on narrow screens, push Service full width */
+@media (max-width: 600px) {
+  .service-card { flex-wrap:wrap; }
+  .service-card > .service-col { flex:1 1 100%; }
+}
+
+/* Info button */
+.info-btn {
+  padding:0.2rem 0.5rem;
+  background:#6c757d;
+  color:#fff;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  font-size:0.8rem;
+}
+
+/* Modal overlay */
+#serviceModal {
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.6);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Modal box */
+#serviceModal .modal-box {
+  background:#fff;
+  padding:1.5rem;
+  border-radius:8px;
+  max-width:500px;
+  width:90%;
+  position:relative;
+}
+
+/* Close button */
+#serviceModal .close-btn {
+  position:absolute;
+  top:0.5rem;
+  right:0.75rem;
+  cursor:pointer;
+  font-size:1.2rem;
+  font-weight:bold;
+}
+</style>
+
+
 <div class="service-card"
      data-category="{{ include.category }}"
      data-exterior="{{ include.ext_key }}"
      data-interior="{{ include.int_key }}"
      data-size="{{ include.size.key }}"
      data-time="{{ total_time | ceil }}"
-     data-price="{{ full_price | round }}"
-     style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-            border-bottom:1px solid #eee;padding:0.5rem 0;width:100%;box-sizing:border-box;">
-
+     data-price="{{ full_price | round }}">
   <!-- Service -->
-  <div style="flex:1 1 200px;font-weight:bold;white-space:normal;word-break:break-word">
+  <div class="service-col">
     {{ include.size.name }}
     {% if include.category == "exterior" %} {{ include.ext_key | capitalize }} Exterior
     {% elsif include.category == "valet" %} {{ include.ext_key | capitalize }} Valet
@@ -44,7 +111,7 @@
     {% endif %}
   </div>
 
-  <div style="flex:0 0 30px;text-align:center;">
+  <div class="info-btn">
   {% assign desc = "" %}
   {% if include.category == "exterior" %}
     {% assign desc = site.data.services.descriptions.exterior[include.ext_key] %}
@@ -68,22 +135,22 @@
 </div>
 
   <!-- Time -->
-  <div style="flex:0 0 80px;text-align:center;white-space:nowrap;">
+  <div class="time-col">
     {{ total_time | round:1 }} hrs
   </div>
 
   <!-- Price -->
-  <div style="flex:0 0 80px;text-align:center;white-space:nowrap;">
+  <div class="price-col">
     £{{ full_price | round }}
   </div>
 
   <!-- Loyalty -->
-  <div style="flex:0 0 100px;text-align:center;color:#28a745;font-weight:bold;white-space:nowrap;">
+  <div class="loyalty-col">
     £{{ discounted | round }}
   </div>
 
   <!-- Book -->
-  <div style="flex:0 0 100px;text-align:center;">
+  <div class="book-col">
     <button data-cal-link="rwmvaleting/{{ include.size.key }}-{{ include.ext_key }}-{{ include.int_key }}"
             style="width:100%;padding:0.35rem 0.5rem;background:#0078d4;color:#fff;
                    border:none;border-radius:4px;cursor:pointer;white-space:nowrap;">

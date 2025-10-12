@@ -16,11 +16,38 @@ permalink: /services/
 **Very Large:** Cars with three rows of seats and vans a similar size and larger than a Ford Transit Custom  
 Note: Only the passenger area in a van is cleaned, not cargo area.  
 
+<style>
+/* Header layout */
+.service-header {
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:center;
+  gap:8px;
+  font-weight:bold;
+  border-bottom:2px solid #ccc;
+  padding:0.5rem 0;
+  width:100%;
+  box-sizing:border-box;
+}
+
+.service-header > .service-col { flex:1 1 200px; }
+.service-header > .time-col    { flex:0 0 80px; text-align:center; }
+.service-header > .price-col   { flex:0 0 80px; text-align:center; }
+.service-header > .loyalty-col { flex:0 0 100px; text-align:center; }
+.service-header > .book-col    { flex:0 0 100px; text-align:center; }
+
+/* Responsive: collapse like rows */
+@media (max-width: 600px) {
+  .service-header { flex-wrap:wrap; }
+  .service-header > .service-col { flex:1 1 100%; }
+}
+</style>
+
 <h2 style="margin-bottom:1rem;">Car Services</h2>
 
 <!-- Filter Controls -->
 <div style="margin-bottom:1rem;">
-  <strong>Filter by Category:</strong>
+  <strong>Category:</strong>
   <button onclick="filterServices('all')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
                background:#6c757d;color:#fff;border:none;border-radius:4px;cursor:pointer;">All</button>
   <button onclick="filterServices('exterior')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
@@ -34,7 +61,7 @@ Note: Only the passenger area in a van is cleaned, not cargo area.
 </div>
 
 <div style="margin-bottom:1rem;">
-  <strong>Filter by Exterior:</strong>
+  <strong>Exterior Depth:</strong>
   <button onclick="filterExterior('all')"
           style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
                  background:#6c757d;color:#fff;border:none;border-radius:4px;cursor:pointer;">
@@ -63,7 +90,7 @@ Note: Only the passenger area in a van is cleaned, not cargo area.
 </div>
 
 <div style="margin-bottom:1rem;">
-  <strong>Filter by Interior:</strong>
+  <strong>Interior Depth:</strong>
   <button onclick="filterInterior('all')"
           style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
                  background:#6c757d;color:#fff;border:none;border-radius:4px;cursor:pointer;">
@@ -92,7 +119,7 @@ Note: Only the passenger area in a van is cleaned, not cargo area.
 </div>
 
 <div style="margin-bottom:1rem;">
-  <strong>Filter by Size:</strong>
+  <strong>Size:</strong>
   <button onclick="filterSize('all')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
                background:#6c757d;color:#fff;border:none;border-radius:4px;cursor:pointer;">All</button>
   <button onclick="filterSize('small')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
@@ -106,7 +133,7 @@ Note: Only the passenger area in a van is cleaned, not cargo area.
 </div>
 
 <div style="margin-bottom:1rem;">
-  <strong>Filter by Time (hrs):</strong>
+  <strong>Max. Time (hrs):</strong>
   <input type="range" id="timeSlider" min="1" max="8" value="8" step="1"
          oninput="updateTimeFilter(this.value)"
          style="width:200px;">
@@ -114,7 +141,7 @@ Note: Only the passenger area in a van is cleaned, not cargo area.
 </div>
 
 <div style="margin-bottom:1rem;">
-  <strong>Filter by Price (£):</strong>
+  <strong>Max. Price (£):</strong>
   <input type="range" id="priceSlider" min="10" max="200" value="200" step="10"
          oninput="updatePriceFilter(this.value)"
          style="width:200px;">
@@ -123,12 +150,13 @@ Note: Only the passenger area in a van is cleaned, not cargo area.
 
 <!-- Service Cards -->
 <div id="services-container" style="width:100%;max-width:1000px;margin:0 auto;">
-    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:bold;border-bottom:2px solid #ccc;padding:0.5rem 0;">
-    <div style="flex:1;min-width:200px;white-space:nowrap;">Service</div>
-    <div style="flex:0 0 80px;text-align:center;white-space:nowrap;">Time</div>
-    <div style="flex:0 0 80px;text-align:center;white-space:nowrap;">Price</div>
-    <div style="flex:0 0 100px;text-align:center;white-space:nowrap;">Loyalty</div>
-    <div style="flex:0 0 100px;text-align:center;white-space:nowrap;">Book</div>
+    <div class="service-header" style="display:flex;flex-wrap:nowrap;align-items:center;gap:8px;
+            font-weight:bold;border-bottom:2px solid #ccc;padding:0.5rem 0;width:100%;box-sizing:border-box;">
+        <div class="service-col">Service</div>
+        <div class="time-col">Time</div>
+        <div class="price-col">Price</div>
+        <div class="loyalty-col">Loyalty</div>
+        <div class="book-col">Book</div>
     </div>
 
   {% assign rate = site.data.services.hourly_rate %}
@@ -275,12 +303,9 @@ function showDescription(text) {
 </script>
 
 
-<!-- Service Description Modal -->
-<div id="serviceModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
-     background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;padding:1.5rem;border-radius:8px;max-width:500px;width:90%;position:relative;">
-    <span onclick="closeServiceModal()" 
-          style="position:absolute;top:0.5rem;right:0.75rem;cursor:pointer;font-size:1.2rem;font-weight:bold;">&times;</span>
+<div id="serviceModal">
+  <div class="modal-box">
+    <span class="close-btn" onclick="closeServiceModal()">&times;</span>
     <div id="serviceModalContent" style="white-space:pre-line;"></div>
   </div>
 </div>
@@ -293,7 +318,6 @@ function openServiceModal(text) {
 function closeServiceModal() {
   document.getElementById('serviceModal').style.display = 'none';
 }
-// Optional: close when clicking outside the box
 document.getElementById('serviceModal').addEventListener('click', function(e) {
   if (e.target.id === 'serviceModal') closeServiceModal();
 });
