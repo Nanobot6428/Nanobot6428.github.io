@@ -1,0 +1,93 @@
+{% assign rate = site.data.services.hourly_rate %}
+{% assign fixed_charge = site.data.services.fixed_charge | default: 0 %}
+
+{% assign ext_size_ratio = site.data.services.ratios.exterior[include.size.key] %}
+{% assign int_size_ratio = site.data.services.ratios.interior[include.size.key] %}
+
+{% assign ext_time_base = site.data.services.times.exterior[include.ext_key] %}
+{% assign int_time_base = site.data.services.times.interior[include.int_key] %}
+{% assign ext_cost_base = site.data.services.costs.exterior[include.ext_key] %}
+{% assign int_cost_base = site.data.services.costs.interior[include.int_key] %}
+
+{% assign ext_time_scaled = ext_time_base | times: ext_size_ratio %}
+{% assign int_time_scaled = int_time_base | times: int_size_ratio %}
+{% assign total_time = ext_time_scaled | plus: int_time_scaled %}
+
+{% assign ext_labour = ext_time_base | times: rate | times: ext_size_ratio %}
+{% assign ext_chems  = ext_cost_base | times: ext_size_ratio %}
+{% assign ext_total  = ext_labour | plus: ext_chems %}
+
+{% assign int_labour = int_time_base | times: rate | times: int_size_ratio %}
+{% assign int_chems  = int_cost_base | times: int_size_ratio %}
+{% assign int_total  = int_labour | plus: int_chems %}
+
+{% assign full_price = ext_total | plus: int_total | plus: fixed_charge %}
+{% assign discounted = full_price | times: 0.85 %}
+
+<div class="service-card"
+     data-category="{{ include.category }}"
+     data-exterior="{{ include.ext_key }}"
+     data-interior="{{ include.int_key }}"
+     data-size="{{ include.size.key }}"
+     data-time="{{ total_time | ceil }}"
+     data-price="{{ full_price | round }}"
+     style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;
+            border-bottom:1px solid #eee;padding:0.5rem 0;width:100%;box-sizing:border-box;">
+
+  <!-- Service -->
+  <div style="flex:1;min-width:200px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+    {{ include.size.name }}
+    {% if include.category == "exterior" %} {{ include.ext_key | capitalize }} Exterior
+    {% elsif include.category == "valet" %} {{ include.ext_key | capitalize }} Valet
+    {% elsif include.category == "mixed" %} {{ include.ext_key | capitalize }} Exterior + {{ include.int_key | capitalize }} Interior
+    {% elsif include.category == "interior" %} {{ include.int_key | capitalize }} Interior
+    {% endif %}
+  </div>
+
+  <div style="flex:0 0 30px;text-align:center;">
+  {% assign desc = "" %}
+  {% if include.category == "exterior" %}
+    {% assign desc = site.data.services.descriptions.exterior[include.ext_key] %}
+  {% elsif include.category == "valet" %}
+    {% assign desc = site.data.services.descriptions.exterior[include.ext_key] 
+        | append: " + " 
+        | append: site.data.services.descriptions.interior[include.int_key] %}
+  {% elsif include.category == "mixed" %}
+    {% assign desc = site.data.services.descriptions.exterior[include.ext_key] | append: " / " | append: site.data.services.descriptions.interior[include.int_key] %}
+  {% elsif include.category == "interior" %}
+    {% assign desc = site.data.services.descriptions.interior[include.int_key] %}
+  {% endif %}
+
+  {% if desc %}
+    <button onclick="openServiceModal(`{{ desc | escape }}`)"
+            style="padding:0.2rem 0.5rem;background:#6c757d;color:#fff;
+                   border:none;border-radius:4px;cursor:pointer;font-size:0.8rem;">
+      i
+    </button>
+  {% endif %}
+</div>
+
+  <!-- Time -->
+  <div style="flex:0 0 80px;text-align:center;white-space:nowrap;">
+    {{ total_time | round:1 }} hrs
+  </div>
+
+  <!-- Price -->
+  <div style="flex:0 0 80px;text-align:center;white-space:nowrap;">
+    £{{ full_price | round }}
+  </div>
+
+  <!-- Loyalty -->
+  <div style="flex:0 0 100px;text-align:center;color:#28a745;font-weight:bold;white-space:nowrap;">
+    £{{ discounted | round }}
+  </div>
+
+  <!-- Book -->
+  <div style="flex:0 0 100px;text-align:center;">
+    <button data-cal-link="rwmvaleting/{{ include.size.key }}-{{ include.ext_key }}-{{ include.int_key }}"
+            style="width:100%;padding:0.35rem 0.5rem;background:#0078d4;color:#fff;
+                   border:none;border-radius:4px;cursor:pointer;white-space:nowrap;">
+      Book
+    </button>
+  </div>
+</div>

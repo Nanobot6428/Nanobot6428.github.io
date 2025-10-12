@@ -1,0 +1,54 @@
+{%- assign rate = site.data.services.hourly_rate -%}
+{%- assign fixed_charge = site.data.services.fixed_charge | default: 0 -%}
+{%- assign sizes = site.data.services.sizes -%}
+
+<table class="service-table">
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Time (hrs)</th>
+      <th>Full Price (£)</th>
+      <th>Loyalty Price (£)</th>
+      <th>Book</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for size in sizes %}
+      {% assign ext_size_ratio = site.data.services.ratios.exterior[size.key] %}
+      {% assign int_size_ratio = site.data.services.ratios.interior[size.key] %}
+
+      {% assign ext_time_base = site.data.services.times.exterior[include.ext_key] %}
+      {% assign int_time_base = site.data.services.times.interior[include.int_key] %}
+      {% assign ext_cost_base = site.data.services.costs.exterior[include.ext_key] %}
+      {% assign int_cost_base = site.data.services.costs.interior[include.int_key] %}
+
+      {% assign ext_time_scaled = ext_time_base | times: ext_size_ratio %}
+      {% assign int_time_scaled = int_time_base | times: int_size_ratio %}
+      {% assign total_time = ext_time_scaled | plus: int_time_scaled %}
+
+      {% assign ext_labour = ext_time_base | times: rate | times: ext_size_ratio %}
+      {% assign ext_chems  = ext_cost_base | times: ext_size_ratio %}
+      {% assign ext_total  = ext_labour | plus: ext_chems %}
+
+      {% assign int_labour = int_time_base | times: rate | times: int_size_ratio %}
+      {% assign int_chems  = int_cost_base | times: int_size_ratio %}
+      {% assign int_total  = int_labour | plus: int_chems %}
+
+      {% assign full_price = ext_total | plus: int_total | plus: fixed_charge %}
+      {% assign discounted = full_price | times: 0.85 %}
+
+      <tr>
+  <td style="padding:0.75rem;border-bottom:1px solid #eee;">{{ size.name }}</td>
+  <td style="padding:0.75rem;border-bottom:1px solid #eee;">{{ total_time | round: 1 }}</td>
+  <td style="padding:0.75rem;border-bottom:1px solid #eee;">£{{ full_price | round }}</td>
+  <td style="padding:0.75rem;border-bottom:1px solid #eee;">£{{ discounted | round }}</td>
+  <td style="padding:0.75rem;border-bottom:1px solid #eee;">
+    <a href="https://cal.com/rwmvaleting/{{ size.key }}-{{ include.ext_key }}-{{ include.int_key }}"
+       style="display:inline-block;padding:0.4rem 0.8rem;background:#0078d4;color:#fff;border-radius:4px;text-decoration:none;">
+      Book {{ size.name }}
+    </a>
+  </td>
+</tr>
+    {% endfor %}
+  </tbody>
+</table>
