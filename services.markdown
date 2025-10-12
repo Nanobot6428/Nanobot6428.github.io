@@ -123,8 +123,7 @@ Note: Only the passenger area in a van is cleaned, not cargo area.
 
 <!-- Service Cards -->
 <div id="services-container" style="width:100%;max-width:1000px;margin:0 auto;">
-    <div style="display:flex;align-items:center;gap:8px;
-                font-weight:bold;border-bottom:2px solid #ccc;padding:0.5rem 0;">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:bold;border-bottom:2px solid #ccc;padding:0.5rem 0;">
     <div style="flex:1;min-width:200px;white-space:nowrap;">Service</div>
     <div style="flex:0 0 80px;text-align:center;white-space:nowrap;">Time</div>
     <div style="flex:0 0 80px;text-align:center;white-space:nowrap;">Price</div>
