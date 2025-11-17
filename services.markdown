@@ -11,7 +11,7 @@ permalink: /services/
 
 #### Car Categories:
 **Small:** Superminis e.g. Ford Fiesta, VW Polo  
-**Regular:** Most cars: hatchbacks, SUVs, small estates, saloons, etc.  
+**Medium:** Most cars: hatchbacks, SUVs, small estates, saloons, etc.  
 **Large:** Any car with a boot over 600 litres and vans smaller than a Ford Transit Custom  
 **Very Large:** Cars with three rows of seats and vans a similar size and larger than a Ford Transit Custom  
 Note: Only the passenger area in a van is cleaned, not cargo area.  
