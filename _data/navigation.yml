@@ -1,0 +1,10 @@
+main:
+  - title: "Home"
+    url: /index/
+  - title: "Services"
+    url: /services/
+  - title: "Policies"
+    url: /policies/
+  - title: "About"
+    url: /about/
+

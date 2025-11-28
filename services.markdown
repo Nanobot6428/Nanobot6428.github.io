@@ -1,5 +1,4 @@
 ---
-layout: page
 title: Services and Price List
 permalink: /services/
 ---
