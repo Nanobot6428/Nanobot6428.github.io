@@ -1,0 +1,127 @@
+// Responsive Styles - Mobile Breakpoints
+// ---------------------------------------
+
+@import 'variables';
+
+// Mobile First: Stack elements vertically on small screens
+@media (max-width: 600px) {
+  // Filter sections stack vertically
+  .filter-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-group {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    flex: 1 1 auto;
+    min-width: 80px;
+  }
+
+  // Service header responsive
+  .service-header {
+    flex-wrap: wrap;
+
+    > .service-col {
+      flex: 1 1 100%;
+      width: 100%;
+    }
+  }
+
+  // Service cards responsive
+  .service-card {
+    flex-wrap: wrap;
+
+    > .service-col {
+      flex: 1 1 100%;
+      width: 100%;
+    }
+
+    > .time-col,
+    > .price-col,
+    > .loyalty-col,
+    > .book-col {
+      flex: 0 0 auto;
+      width: auto;
+    }
+  }
+
+  // Range slider full width on mobile
+  .range-slider input[type="range"] {
+    width: 100%;
+  }
+}
+
+// Extra Small Devices (360px+)
+@media (min-width: 360px) {
+  // Show book column at 360px+
+  .service-card {
+    > .book-col {
+      display: flex;
+    }
+  }
+
+  // Stack filters vertically on very small screens
+  .filter-section {
+    @media (max-width: 360px) {
+      .filter-group {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+// Tablet Landscape (768px+)
+@media (min-width: 768px) {
+  // Better spacing on larger screens
+  .filter-section {
+    gap: $spacing-lg;
+  }
+
+  .service-header,
+  .service-card {
+    > .service-col {
+      flex: 1 1 250px;
+    }
+  }
+}
+
+// Desktop (992px+)
+@media (min-width: 992px) {
+  // Optimal spacing on desktop
+  .filter-section {
+    max-width: $screen-lg;
+    margin: 0 auto;
+  }
+
+  .service-header,
+  .service-card {
+    > .service-col {
+      flex: 1 1 300px;
+    }
+  }
+}
+
+// Accessibility: Focus visible for keyboard navigation
+:focus-visible {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+}
+
+// Print Styles
+@media print {
+  .filter-section,
+  .info-btn,
+  .book-col {
+    display: none !important;
+  }
+
+  .service-card {
+    flex-wrap: nowrap;
+    page-break-inside: avoid;
+  }
+}

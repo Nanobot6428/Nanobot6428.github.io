@@ -1,0 +1,49 @@
+// Services Page Styles
+// ====================
+
+// Import variables first
+@import 'services/variables';
+
+// Import component SCSS files
+@import 'services/cards';
+@import 'services/filters';
+@import 'services/responsive';
+
+// Additional accessibility styles
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+
+// Keyboard focus styles
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+}
+
+// Screen reader announcements
+.sr-only {
+  @extend .visually-hidden;
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
