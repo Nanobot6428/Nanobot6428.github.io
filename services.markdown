@@ -15,142 +15,72 @@ permalink: /services/
 **Very Large:** Cars with three rows of seats and vans a similar size and larger than a Ford Transit Custom  
 Note: Only the passenger area in a van is cleaned, not cargo area.  
 
-<style>
-/* Header layout */
-.service-header {
-  display:flex;
-  flex-wrap:nowrap;
-  align-items:center;
-  gap:8px;
-  font-weight:bold;
-  border-bottom:2px solid #ccc;
-  padding:0.5rem 0;
-  width:100%;
-  box-sizing:border-box;
-}
-
-.service-header > .service-col { flex:1 1 200px; }
-.service-header > .time-col    { flex:0 0 80px; text-align:center; }
-.service-header > .price-col   { flex:0 0 80px; text-align:center; }
-.service-header > .loyalty-col { flex:0 0 100px; text-align:center; }
-.service-header > .book-col    { flex:0 0 100px; text-align:center; }
-
-/* Responsive: collapse like rows */
-@media (max-width: 600px) {
-  .service-header { flex-wrap:wrap; }
-  .service-header > .service-col { flex:1 1 100%; }
-}
-</style>
+<link rel="stylesheet" href="/assets/css/services/services.css" type="text/css">
 
 <h2 style="margin-bottom:1rem;">Car Services</h2>
 
 <!-- Filter Controls -->
-<div style="margin-bottom:1rem;">
+<div class="filter-section">
   <strong>Category:</strong>
-  <button onclick="filterServices('all')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-               background:#6c757d;color:#fff;border:none;border-radius:4px;cursor:pointer;">All</button>
-  <button onclick="filterServices('exterior')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-               background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;">Exterior</button>
-  <button onclick="filterServices('valet')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-               background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;">Valet</button>
-  <button onclick="filterServices('mixed')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-               background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;">Mixed</button>
-  <button onclick="filterServices('interior')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-               background:#28a745;color:#fff;border:none;border-radius:4px;cursor:pointer;">Interior</button>
+  <div class="filter-group">
+    <button type="button" onclick="filterServices('all', this)" class="filter-btn filter-btn--primary is-active" data-filter="all">All</button>
+    <button type="button" onclick="filterServices('exterior', this)" class="filter-btn filter-btn--success">Exterior</button>
+    <button type="button" onclick="filterServices('valet', this)" class="filter-btn filter-btn--success">Valet</button>
+    <button type="button" onclick="filterServices('mixed', this)" class="filter-btn filter-btn--success">Mixed</button>
+    <button type="button" onclick="filterServices('interior', this)" class="filter-btn filter-btn--success">Interior</button>
+  </div>
 </div>
 
-<div style="margin-bottom:1rem;">
+<div class="filter-section">
   <strong>Exterior Depth:</strong>
-  <button onclick="filterExterior('all')"
-          style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-                 background:#6c757d;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-    All
-  </button>
-  <button onclick="filterExterior('none')"
-          style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-                 background:#2196f3;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-    None
-  </button>
-  <button onclick="filterExterior('basic')"
-          style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-                 background:#2196f3;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-    Basic
-  </button>
-  <button onclick="filterExterior('standard')"
-          style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-                 background:#2196f3;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-    Standard
-  </button>
-  <button onclick="filterExterior('deep')"
-          style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-                 background:#2196f3;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-    Deep
-  </button>
+  <div class="filter-group">
+    <button type="button" onclick="filterExterior('all', this)" class="filter-btn filter-btn--info is-active" data-filter="all">All</button>
+    <button type="button" onclick="filterExterior('none', this)" class="filter-btn filter-btn--info">None</button>
+    <button type="button" onclick="filterExterior('basic', this)" class="filter-btn filter-btn--info">Basic</button>
+    <button type="button" onclick="filterExterior('standard', this)" class="filter-btn filter-btn--info">Standard</button>
+    <button type="button" onclick="filterExterior('deep', this)" class="filter-btn filter-btn--info">Deep</button>
+  </div>
 </div>
 
-<div style="margin-bottom:1rem;">
+<div class="filter-section">
   <strong>Interior Depth:</strong>
-  <button onclick="filterInterior('all')"
-          style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-                 background:#6c757d;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-    All
-  </button>
-  <button onclick="filterInterior('none')"
-          style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-                 background:#B22222;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-    None
-  </button>
-  <button onclick="filterInterior('basic')"
-          style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-                 background:#B22222;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-    Basic
-  </button>
-  <button onclick="filterInterior('standard')"
-          style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-                 background:#B22222;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-    Standard
-  </button>
-  <button onclick="filterInterior('deep')"
-          style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-                 background:#B22222;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-    Deep
-  </button>
+  <div class="filter-group">
+    <button type="button" onclick="filterInterior('all', this)" class="filter-btn filter-btn--danger is-active" data-filter="all">All</button>
+    <button type="button" onclick="filterInterior('none', this)" class="filter-btn filter-btn--danger">None</button>
+    <button type="button" onclick="filterInterior('basic', this)" class="filter-btn filter-btn--danger">Basic</button>
+    <button type="button" onclick="filterInterior('standard', this)" class="filter-btn filter-btn--danger">Standard</button>
+    <button type="button" onclick="filterInterior('deep', this)" class="filter-btn filter-btn--danger">Deep</button>
+  </div>
 </div>
 
-<div style="margin-bottom:1rem;">
+<div class="filter-section">
   <strong>Size:</strong>
-  <button onclick="filterSize('all')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-               background:#6c757d;color:#fff;border:none;border-radius:4px;cursor:pointer;">All</button>
-  <button onclick="filterSize('small')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-               background:#9c27b0;color:#fff;border:none;border-radius:4px;cursor:pointer;">Small</button>
-  <button onclick="filterSize('medium')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-               background:#9c27b0;color:#fff;border:none;border-radius:4px;cursor:pointer;">Medium</button>
-  <button onclick="filterSize('large')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-               background:#9c27b0;color:#fff;border:none;border-radius:4px;cursor:pointer;">Large</button>
-  <button onclick="filterSize('very-large')" style="display:inline-block;padding:0.4rem 0.8rem;margin:0.2rem;
-               background:#9c27b0;color:#fff;border:none;border-radius:4px;cursor:pointer;">Very Large</button>
+  <div class="filter-group">
+    <button type="button" onclick="filterSize('all', this)" class="filter-btn filter-btn--warning is-active" data-filter="all">All</button>
+    <button type="button" onclick="filterSize('small', this)" class="filter-btn filter-btn--warning">Small</button>
+    <button type="button" onclick="filterSize('medium', this)" class="filter-btn filter-btn--warning">Medium</button>
+    <button type="button" onclick="filterSize('large', this)" class="filter-btn filter-btn--warning">Large</button>
+    <button type="button" onclick="filterSize('very-large', this)" class="filter-btn filter-btn--warning">Very Large</button>
+  </div>
 </div>
 
-<div style="margin-bottom:1rem;">
+<div class="filter-section range-slider">
   <strong>Max. Time (hrs):</strong>
   <input type="range" id="timeSlider" min="1" max="8" value="8" step="1"
-         oninput="updateTimeFilter(this.value)"
-         style="width:200px;">
-  <span id="timeValue">Up to 8+</span>
+         oninput="updateTimeFilter(this.value)">
+  <span class="range-value" id="timeValue">Up to 8+</span>
 </div>
 
-<div style="margin-bottom:1rem;">
+<div class="filter-section range-slider">
   <strong>Max. Price (£):</strong>
   <input type="range" id="priceSlider" min="10" max="200" value="200" step="10"
-         oninput="updatePriceFilter(this.value)"
-         style="width:200px;">
-  <span id="priceValue">Up to £200+</span>
+         oninput="updatePriceFilter(this.value)">
+  <span class="range-value" id="priceValue">Up to £200+</span>
 </div>
 
 <!-- Service Cards -->
 <div id="services-container" style="width:100%;max-width:1000px;margin:0 auto;">
-    <div class="service-header" style="display:flex;flex-wrap:nowrap;align-items:center;gap:8px;
-            font-weight:bold;border-bottom:2px solid #ccc;padding:0.5rem 0;width:100%;box-sizing:border-box;">
+    <div class="service-header">
         <div class="service-col">Service</div>
         <div class="time-col">Time</div>
         <div class="price-col">Price</div>
@@ -220,16 +150,46 @@ let currentSize = 'all';
 let currentTime = 8;   // hours
 let currentPrice = 200; // £
 
-function filterServices(category) { currentCategory = category; applyFilters(); }
-function filterExterior(depth) { currentExterior = depth; applyFilters(); }
-function filterInterior(depth) { currentInterior = depth; applyFilters(); }
-function filterSize(size) { currentSize = size; applyFilters(); }
+function filterServices(category, btn) {
+  currentCategory = category;
+  updateActiveFilter(btn, 'category');
+  applyFilters();
+}
+
+function filterExterior(depth, btn) {
+  currentExterior = depth;
+  updateActiveFilter(btn, 'exterior');
+  applyFilters();
+}
+
+function filterInterior(depth, btn) {
+  currentInterior = depth;
+  updateActiveFilter(btn, 'interior');
+  applyFilters();
+}
+
+function filterSize(size, btn) {
+  currentSize = size;
+  updateActiveFilter(btn, 'size');
+  applyFilters();
+}
+
+function updateActiveFilter(button, filterType) {
+  // Get all buttons in the same filter group (same parent .filter-group)
+  const group = button ? button.closest('.filter-group') : null;
+  if (group) {
+    const buttons = group.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => btn.classList.remove('is-active'));
+    if (button) button.classList.add('is-active');
+  }
+}
 
 function updateTimeFilter(val) {
   currentTime = parseInt(val);
   document.getElementById('timeValue').innerText = (val == 8) ? "Up to 8+" : "Up to " + val + " hrs";
   applyFilters();
 }
+
 function updatePriceFilter(val) {
   currentPrice = parseInt(val);
   document.getElementById('priceValue').innerText = (val == 200) ? "Up to £200+" : "Up to £" + val;

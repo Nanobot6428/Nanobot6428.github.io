@@ -1,0 +1,67 @@
+// Service Page SCSS Variables
+// --------------------------
+
+// Brand Colors - Consistent palette
+$primary-color: #0078d4;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$danger-color: #dc3545;
+$info-color: #0dcaf0;
+$warning-color: #fd7e14;
+
+// Background Colors
+$bg-light: #f8f9fa;
+$bg-dark: #333;
+$card-bg: #fff;
+
+// Text Colors
+$text-primary: #212529;
+$text-secondary: #6c757d;
+$text-light: #fff;
+$text-muted: #6c757d;
+
+// Border Colors
+$border-color: #eee;
+$border-light: #ccc;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 0.75rem;
+$spacing-lg: 1rem;
+$spacing-xl: 1.5rem;
+
+// Typography
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-size-base: 1rem;
+$font-size-small: 0.875rem;
+$font-size-large: 1.125rem;
+
+// Card Dimensions
+$card-padding: $spacing-sm;
+$card-gap: 8px;
+$card-border-radius: 4px;
+
+// Button Styles
+$btn-padding-y: 0.4rem;
+$btn-padding-x: 0.8rem;
+$btn-border-radius: 4px;
+$btn-transition: all 0.2s ease;
+
+// Hover Effects
+$hover-lift: translateY(-2px);
+$hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$hover-border-left: $primary-color;
+
+// Responsive Breakpoints
+$screen-xs: 360px;
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+
+// Media Queries
+$mq-xs: "max-width: #{$screen-xs}";
+$mq-sm: "max-width: #{$screen-sm}";
+$mq-md: "max-width: #{$screen-md}";
+$mq-lg: "max-width: #{$screen-lg}";

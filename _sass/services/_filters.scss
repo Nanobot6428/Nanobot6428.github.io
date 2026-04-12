@@ -1,0 +1,157 @@
+// Filter Buttons - Centralized Styles
+// ------------------------------------
+
+@import 'variables';
+
+// Filter Section Container
+.filter-section {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-bottom: $spacing-sm;
+  gap: $spacing-sm;
+
+  strong {
+    color: $text-light;
+    font-weight: 600;
+    margin-right: $spacing-sm;
+    white-space: nowrap;
+  }
+}
+
+// Filter Button Base Style
+.filter-btn {
+  display: inline-block;
+  padding: $btn-padding-y $btn-padding-x;
+  background: $secondary-color;
+  color: $text-light;
+  border: none;
+  border-radius: $btn-border-radius;
+  cursor: pointer;
+  font-size: $font-size-small;
+  font-weight: 500;
+  transition: $btn-transition;
+  white-space: nowrap;
+
+  // Color Variants - using actual semantic colors
+  &--primary { background: $info-color; color: #fff; }
+  &--success { background: $success-color; color: #fff; }
+  &--info { background: $info-color; color: #fff; }
+  &--warning { background: $warning-color; color: #fff; }
+  &--danger { background: $danger-color; color: #fff; }
+
+  // Hover State
+  &:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  // Active/Selected State - use the variant color for active
+  &.is-active {
+    filter: brightness(1.2);
+    transform: translateY(0);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  // Focus State
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+
+  // Disabled State
+  &:disabled {
+    background-color: $secondary-color;
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// Filter Button Groups
+.filter-group {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: $spacing-xs;
+}
+
+// Range Input Styles
+.range-slider {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+
+  input[type="range"] {
+    width: 200px;
+    height: 6px;
+    padding: 0;
+    background: $border-color;
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: $primary-color;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    &::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: $primary-color;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .range-value {
+    font-weight: 500;
+    color: $text-light;
+    min-width: 80px;
+    text-align: right;
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: 600px) {
+  .filter-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-group {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .filter-btn {
+    width: 100%;
+  }
+
+  .range-slider {
+    width: 100%;
+
+    input[type="range"] {
+      width: 100%;
+    }
+  }
+}
